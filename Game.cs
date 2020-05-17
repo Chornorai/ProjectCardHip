@@ -13,8 +13,9 @@ namespace CardGameWF
         public List<Player> Players { get; }
         public CardSet Deck { get; }
         public Player ActivePlayer { get; set; }
+        public Player PassivePlayer { get; set; }
 
-        public Action<Player> MarkActivePlayer;
+        public Action<Player> MarkMover;
         public Action<string> ShowMessage;
 
         public Game(CardSet table, CardSet deck, params Player[] players)
@@ -27,15 +28,41 @@ namespace CardGameWF
 
         public void Move(Player mover, Card card)
         {
-            if (mover != ActivePlayer) return;
+            if (mover != ActivePlayer || mover != passivePlayer) return;
 
             if (mover.PlayerCards.Cards.IndexOf(card) == -1) return;
 
+            //проверка, может ли он класть такую карту
+            if(mover==ActivePlayer)
+                {}
+                ///
+            else
+                    {
+                    //может ли побить
+                    }
             Table.Add(mover.PlayerCards.Pull(card));
-            ActivePlayer = NextPlayer(ActivePlayer);
-            MarkActivePlayer(ActivePlayer);
+            //ActivePlayer = NextPlayer(ActivePlayer);
+            MarkMover(null);//если активный, то пасивный и наоборот);
             Refresh();
         }
+
+        public void Take()
+            {//пассивный игрок забирает карты со стола
+            //меняем активного игрока
+        }
+
+        public void Otboy()
+        {
+            //убиаем карты со стола
+            //пассивный становится активным, сл. становится пассивным
+        }
+
+
+        public ChekWinner()
+            {
+            //определяет, есть ли победитель
+        }
+
         public void Attack(CardFigure figure , CardSuit suit , Card card)
         {
             //if (card.Figure == )
