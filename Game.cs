@@ -28,48 +28,46 @@ namespace CardGameWF
 
         public void Move(Player mover, Card card)
         {
-            if (mover != ActivePlayer || mover != passivePlayer) return;
+            if (mover != ActivePlayer || mover != PassivePlayer) return;
 
             if (mover.PlayerCards.Cards.IndexOf(card) == -1) return;
 
-            //проверка, может ли он класть такую карту
+           
             if(mover==ActivePlayer)
-                {}
-                ///
+            {
+            }
+            
             else
-                    {
-                    //может ли побить
-                    }
+            {
+                 
+            }
             Table.Add(mover.PlayerCards.Pull(card));
-            //ActivePlayer = NextPlayer(ActivePlayer);
-            MarkMover(null);//если активный, то пасивный и наоборот);
+            ActivePlayer = NextPlayer(ActivePlayer);
+            MarkMover(null);
             Refresh();
         }
 
         public void Take()
-            {//пассивный игрок забирает карты со стола
-            //меняем активного игрока
+        {
+            //пассивный игрок забирает карты со стола
+            if ( )
+            {
+
+            }
+            ActivePlayer = NextPlayer(ActivePlayer);
         }
 
         public void Otboy()
         {
-            //убиаем карты со стола
-            //пассивный становится активным, сл. становится пассивным
+            Table.Cards.Clear();
+            Refresh();
+            ActivePlayer = NextPlayer(ActivePlayer);
         }
 
 
-        public ChekWinner()
-            {
-            //определяет, есть ли победитель
-        }
-
-        public void Attack(CardFigure figure , CardSuit suit , Card card)
+        public void CheсkWinner()
         {
-            //if (card.Figure == )
-            //{
-            //    Deck.Card = card;
-            //    Player.Cards.Cards.Remove(card);
-            //}
+            //определяет, есть ли победитель
         }
         public void Refresh()
         {
@@ -110,12 +108,6 @@ namespace CardGameWF
                 if (item.PlayerCards.Cards.Count != 0)
                     ShowMessage(item.Name + "loose");
             }
-        }
-
-        public void HangUp()
-        {
-            Table.Cards.Clear();
-            Refresh();
         }
     }
 }
