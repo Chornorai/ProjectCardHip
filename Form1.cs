@@ -34,7 +34,7 @@ namespace ProjectCardHip
             }
 
             game.ShowMessage = ShowMessage;
-            game.MarkActivePlayer = MarkPlayer;
+            game.MarkMover = MarkPlayer;
 
             game.Deal();
         }
