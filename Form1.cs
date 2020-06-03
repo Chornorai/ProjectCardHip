@@ -112,8 +112,7 @@ namespace ProjectCardHip
 
         private void pnlTable_Click(object sender, EventArgs e)
         {
-            if (activeCard != null && mover != null)
-                game.Move(mover, activeCard);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -139,6 +138,22 @@ namespace ProjectCardHip
         private void pnlDeck_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (activeCard != null && mover != null)
+                game.Move(mover, activeCard);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            game.ToOtboy();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            game.Take();
         }
     }
 }

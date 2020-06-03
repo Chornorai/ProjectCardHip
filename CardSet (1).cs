@@ -98,8 +98,8 @@ namespace CardGameWF
 
             for (int i = 0; i < amount; i++)
             {
-                c.Add(Cards[i]);
-                Cards.RemoveAt(i);
+                c.Add(Cards[0]);
+                Cards.RemoveAt(0);
             }
 
             return c;

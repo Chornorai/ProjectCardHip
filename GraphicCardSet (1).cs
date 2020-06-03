@@ -32,6 +32,7 @@ namespace CardGameWF
 
         public override void Show()
         {
+            Panel.Controls.Clear();
             for (int i = 0; i < Cards.Count; i++)
             {
                 GraphicCard graphicCard = (GraphicCard)Cards[i];

@@ -28,16 +28,13 @@ namespace CardGameWF
             Table = table;
             Players = new List<Player>(players);
             Deck = deck;
-
-
-            
         }
 
         public void Move(Player mover, Card card)
         {
             if (Table.Cards.Count >= 2) return;
 
-            if (mover != ActivePlayer || mover != PassivePlayer) return;
+            if (mover != ActivePlayer && mover != PassivePlayer) return;
 
             if (mover.PlayerCards.Cards.IndexOf(card) == -1) return;
 
@@ -74,6 +71,7 @@ namespace CardGameWF
         {
           
             PassivePlayer.PlayerCards.Add(Table.Deal(Table.Cards.Count));
+            Dobor();
             ActivePlayer = NextPlayer(PassivePlayer);
             PassivePlayer = NextPlayer(ActivePlayer);
             Mover = ActivePlayer;
@@ -89,6 +87,7 @@ namespace CardGameWF
             PassivePlayer = NextPlayer(ActivePlayer);
             Mover = ActivePlayer;
             MarkMover(Mover);
+            ShowMessage("Otbilsa");
             Refresh();
         }
 
@@ -96,25 +95,25 @@ namespace CardGameWF
         {
             foreach (var item in Players)
             {
-                if (item.PlayerCards.Cards.Count != 3)
+                while (item.PlayerCards.Cards.Count < 3)
                 {
-                    if (Deck == 0)
+                    if (Deck.Cards.Count < 3 - item.PlayerCards.Cards.Count)
                     {
-                        Otboy.Mix();
-                        Otboy = Deck;
-                        //  item.PlayerCards.Add(Deck);
+                        if (Deck.Cards.Count == 0)
+                        {
+                            item.PlayerCards.Add(Trump);
+                            Deck.Add(Otboy.Deal(Otboy.Cards.Count));
+                            Deck.Mix();
+                        }
+                        else
+                            item.PlayerCards.Add(Deck.Deal(Deck.Cards.Count));
                     }
                     else
                     {
-                        item.PlayerCards.Add(Trump);
+                        item.PlayerCards.Add(Deck.Deal(3 - item.PlayerCards.Cards.Count));
                     }
                 }
             }
-            //перебрать всех игроков. Если у них карт меньше 3, то...
-            //проверить, хватает ли в колоде карт
-            //если да взять из колоды нехватающие
-            //если нет, отдать козырь
-            // если больше карт нет, то перемешеть отбой и положить в дек
         }
 
         public void CheсkWinner()
@@ -146,6 +145,7 @@ namespace CardGameWF
                 item.PlayerCards.Show();
             }
             Table.Show();
+            CheсkWinner();
         }
 
         private Player NextPlayer(Player player)
@@ -165,24 +165,25 @@ namespace CardGameWF
         public void Deal()
         {
             Deck.Mix();
+            Trump = Deck.Deal(1).Cards[0];
             foreach (var item in Players)
             {
                 item.PlayerCards.Add(Deck.Deal(3));
             }
 
             ActivePlayer = Players[0];
-
+            PassivePlayer = NextPlayer(ActivePlayer);
             Mover = ActivePlayer;
             MarkMover(Mover);
             Refresh();
         }
-        public void GameOver()
-        {
-            foreach (var item in Players)
-            {
-                if (item.PlayerCards.Cards.Count != 0)
-                    ShowMessage(item.Name + "loose");
-            }
-        }
+        //public void GameOver()
+        //{
+        //    foreach (var item in Players)
+        //    {
+        //        if (item.PlayerCards.Cards.Count != 0)
+        //            ShowMessage(item.Name + "loose");
+        //    }
+        //}
     }
 }
