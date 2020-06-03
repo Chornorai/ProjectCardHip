@@ -29,7 +29,6 @@ namespace CardGameWF
             Players = new List<Player>(players);
             Deck = deck;
 
-            Deal(); 
 
             
         }
@@ -73,7 +72,7 @@ namespace CardGameWF
 
         public void Take()
         {
-            //пассивный игрок забирает карты со стола
+          
             PassivePlayer.PlayerCards.Add(Table.Deal(Table.Cards.Count));
             ActivePlayer = NextPlayer(PassivePlayer);
             PassivePlayer = NextPlayer(ActivePlayer);
@@ -95,6 +94,22 @@ namespace CardGameWF
 
         private void Dobor()
         {
+            foreach (var item in Players)
+            {
+                if (item.PlayerCards.Cards.Count != 3)
+                {
+                    if (Deck == 0)
+                    {
+                        Otboy.Mix();
+                        Otboy = Deck;
+                        //  item.PlayerCards.Add(Deck);
+                    }
+                    else
+                    {
+                        item.PlayerCards.Add(Trump);
+                    }
+                }
+            }
             //перебрать всех игроков. Если у них карт меньше 3, то...
             //проверить, хватает ли в колоде карт
             //если да взять из колоды нехватающие

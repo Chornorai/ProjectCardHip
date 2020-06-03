@@ -29,7 +29,6 @@ namespace ProjectCardHip
             foreach (var card in game.Deck.Cards)
             {
                 PictureBox cardPictureBox = ((GraphicCard)card).Pb;
-                cardPictureBox.DoubleClick += CardPictureBox_DoubleClick;
                 cardPictureBox.Click += CardPictureBox_Click;
             }
 
@@ -139,10 +138,7 @@ namespace ProjectCardHip
 
         private void pnlDeck_Click(object sender, EventArgs e)
         {
-            //if ( )
-            //{
-
-            //}
+            
         }
     }
 }
