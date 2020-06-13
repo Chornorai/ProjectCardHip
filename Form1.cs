@@ -36,6 +36,7 @@ namespace ProjectCardHip
             game.MarkMover = MarkPlayer;
 
             game.Deal();
+            button1.Visible = false;
         }
 
 
@@ -132,7 +133,7 @@ namespace ProjectCardHip
 
         private void pnlDeck_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
 
         private void pnlDeck_Click(object sender, EventArgs e)
@@ -154,6 +155,21 @@ namespace ProjectCardHip
         private void button2_Click(object sender, EventArgs e)
         {
             game.Take();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnlPlayer2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -177,13 +177,5 @@ namespace CardGameWF
             MarkMover(Mover);
             Refresh();
         }
-        //public void GameOver()
-        //{
-        //    foreach (var item in Players)
-        //    {
-        //        if (item.PlayerCards.Cards.Count != 0)
-        //            ShowMessage(item.Name + "loose");
-        //    }
-        //}
     }
 }
